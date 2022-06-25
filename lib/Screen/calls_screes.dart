@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:whatup_ui/item/calls_item.dart';
+import 'package:whatup_ui/models/call.dart';
 
 class CallScreen extends StatelessWidget {
   const CallScreen({Key? key}) : super(key: key);
@@ -6,8 +8,11 @@ class CallScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: const Center(
-        child: Text("Call Screen"),
+      child: Center(
+        child: ListView.builder(
+          itemBuilder: ((context, index) => CallItem(callData[index])),
+          itemCount: callData.length,
+        ),
       ),
     );
   }

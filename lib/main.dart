@@ -26,68 +26,82 @@ class _MyAppState extends State<MyApp> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(primaryColor: Colors.teal, primarySwatch: Colors.teal),
       title: 'Material App',
       home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: const Color(0xff004C58),
-          title: const Text(
-            'WhatsApp',
-            style: TextStyle(color: Colors.white),
+          appBar: AppBar(
+            backgroundColor: const Color(0xff008069),
+            title: const Text(
+              'WhatsApp',
+              style: TextStyle(color: Colors.white),
+            ),
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.search),
+                onPressed: () {},
+              ),
+              IconButton(
+                icon: const Icon(Icons.more_vert),
+                onPressed: () {},
+              ),
+            ],
+            bottom: TabBar(
+                controller: _tabController,
+                indicatorColor: Colors.white,
+                labelPadding: const EdgeInsets.only(bottom: 10),
+                tabs: const [
+                  Icon(
+                    Icons.camera_alt,
+                    color: Colors.white,
+                  ),
+                  Text(
+                    "CHATS",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    "STATUS",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    "CALLS",
+                    style: TextStyle(color: Colors.white),
+                  )
+                ]),
           ),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.search),
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: const Icon(Icons.more_vert),
-              onPressed: () {},
-            ),
-          ],
-          bottom: TabBar(
-              controller: _tabController,
-              indicatorColor: Colors.white,
-              labelPadding: const EdgeInsets.only(bottom: 10),
-              tabs: const [
-                Icon(
-                  Icons.camera_alt,
-                  color: Colors.white,
-                ),
-                Text(
-                  "CHATS",
-                  style: TextStyle(color: Colors.white),
-                ),
-                Text(
-                  "STATUS",
-                  style: TextStyle(color: Colors.white),
-                ),
-                Text(
-                  "CALLS",
-                  style: TextStyle(color: Colors.white),
-                )
-              ]),
-        ),
-        body: TabBarView(
-          controller: _tabController,
-          children: const [
-            CameraScreen(),
-            ChatScreen(),
-            StatusScreen(),
-            CallScreen(),
-          ],
-        ),
-        floatingActionButton: (_tabController.index == 1 ||
-                _tabController.index == 2 ||
-                _tabController.index == 3)
-            ? FloatingActionButton(
-                onPressed: () {
-                  print(Localizations.localeOf(context));
-                },
-                backgroundColor: const Color(0xff13955F),
-                child: const Icon(Icons.message),
-              )
-            : null,
-      ),
+          body: TabBarView(
+            controller: _tabController,
+            children: const [
+              CameraScreen(),
+              ChatScreen(),
+              StatusScreen(),
+              CallScreen(),
+            ],
+          ),
+          floatingActionButton: _getFloat()),
     );
+  }
+
+  _getFloat() {
+    if (_tabController.index == 1) {
+      return FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: const Color(0xff13955F),
+        child: const Icon(Icons.message),
+      );
+    } else if (_tabController.index == 2) {
+      return FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: const Color(0xff13955F),
+        child: const Icon(Icons.camera_alt),
+      );
+    } else if (_tabController.index == 3) {
+      return FloatingActionButton(
+        onPressed: () {},
+        backgroundColor: const Color(0xff13955F),
+        child: const Icon(Icons.call),
+      );
+    } else {
+      return null;
+    }
   }
 }
