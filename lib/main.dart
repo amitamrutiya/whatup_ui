@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:whatup_ui/Screen/Chat_Screen.dart';
+import 'package:whatup_ui/Screen/calls_screes.dart';
+import 'package:whatup_ui/Screen/camera_screen.dart';
+import 'package:whatup_ui/Screen/status_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -45,28 +49,12 @@ class MyApp extends StatelessWidget {
                   )
                 ]),
           ),
-          body: TabBarView(
+          body: const TabBarView(
             children: [
-              Container(
-                child: const Center(
-                  child: Text("Camera Screen"),
-                ),
-              ),
-              Container(
-                child: const Center(
-                  child: Text("Chat Screen"),
-                ),
-              ),
-              Container(
-                child: const Center(
-                  child: Text("Status Screen"),
-                ),
-              ),
-              Container(
-                child: const Center(
-                  child: Text("Call Screen"),
-                ),
-              ),
+              CameraScreen(),
+              ChatScreen(),
+              StatusScreen(),
+              CallScreen(),
             ],
           ),
           floatingActionButton: FloatingActionButton(
